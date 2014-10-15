@@ -73,8 +73,8 @@ int recv_frame(char *msg, int frame_size)
 			if ((frame_size != FRAME_SIZE) || (msg[0] != FLAG) || (msg[FRAME_SIZE-1] != FLAG))
 			{
 				printf("Discarded message\n");
-                printf("%x\n", msg[0]);
-                printf("%x\n", msg[FRAME_SIZE-1]);
+        			printf("%x\n", msg[0]);
+                		printf("%x\n", msg[FRAME_SIZE-1]);
 				msg[0] = '\0';
 				return (-1);
 			}
@@ -89,14 +89,14 @@ int recv_frame(char *msg, int frame_size)
 					{
 						// writes escaped character to de-stuffed message
 						dmsg[j] = 0x7e;
-                        printf("De-stuffed ESC_FLAG\n");
+                        			printf("De-stuffed ESC_FLAG\n");
 					}
 					// byte stuffed character check for ESC_ESC
 					else if ((msg[j] == ESC_ESC[0]) && (msg[j+1] == ESC_ESC[1]))
 					{
 						// writes escaped character to de-stuffed message
 						dmsg[j] = 0x7d;
-                        printf("De-stuffed ESC_ESC\n");
+                        			printf("De-stuffed ESC_ESC\n");
 					}
 					// drops start flag from de-stuffed message
 					else if (msg[j] == FLAG)
